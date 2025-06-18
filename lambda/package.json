@@ -1,0 +1,10 @@
+{
+    "name": "url-shortener",
+    "version": "1.0.0",
+    "description": "A simple url shortener using Lambda",
+    "main": "index.js",
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.830.0",
+        "@aws-sdk/lib-dynamodb": "^3.830.0"
+    }
+}

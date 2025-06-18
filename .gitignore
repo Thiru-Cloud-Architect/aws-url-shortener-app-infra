@@ -1,0 +1,10 @@
+# OS Store
+.DS_Store
+
+# Terraform
+.terraform/
+*.lock.hcl
+
+# Lambda | Node.js
+node_modules/
+package-lock.json
