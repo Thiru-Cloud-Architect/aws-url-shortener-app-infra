@@ -15,11 +15,13 @@ on:
       - '**.tf'
       - '**.tfvars'
       - 'terraform/**'
+      - '.github/workflows/**'
 
 jobs:
   terraform:
     name: Terraform Deployment
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout
@@ -49,5 +51,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.event_name == 'pull_request' && github.base_ref == 'main'
-        environment: production
         run: terraform apply tfplan --auto-approve 
