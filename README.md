@@ -51,7 +51,12 @@ How to Build the App
 How to use the App
     Test endpoints via curl or Postman: 
     
-    ```bash curl -X POST -H "Content-Type:application/json" \ -H "authorization: $AUTH_TOKEN" \ -d '{"URL":"https://example.com"}' \ https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten
+    1. To make short url
+    curl -X POST -H "Content-Type:application/json" \ 
+    -H "authorization: $AUTH_TOKEN" \ 
+    -d '{"URL":"https://example.com"}' \ 
+    https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten
 
-    curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url/<shortCode> ```
+    2. To get the original URL
+    curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url/<shortCode_generated>
 
