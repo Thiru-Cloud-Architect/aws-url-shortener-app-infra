@@ -8,6 +8,7 @@ on:
       - '**.tf'
       - '**.tfvars'
       - 'terraform/**'
+      - '.github/workflows/**'
   pull_request:
     branches:
       - main 
