@@ -2,6 +2,8 @@ name: Terraform CI with Approval
 
 on:
   push:
+    branches:
+      - '**'
     paths:
       - '**.tf'
       - '**.tfvars'
