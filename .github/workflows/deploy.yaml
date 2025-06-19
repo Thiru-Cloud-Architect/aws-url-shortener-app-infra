@@ -1,0 +1,51 @@
+name: Terraform CI with Approval
+
+on:
+  push:
+    paths:
+      - '**.tf'
+      - '**.tfvars'
+      - 'terraform/**'
+  pull_request:
+    branches:
+      - main 
+    paths:
+      - '**.tf'
+      - '**.tfvars'
+      - 'terraform/**'
+
+jobs:
+  terraform:
+    name: Terraform Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        if: github.event_name == 'push'
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        environment: production
+        run: terraform apply tfplan --auto-approve 
