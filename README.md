@@ -12,6 +12,8 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
 └── terraform/
     ├── main.tf
     ├── variables.tf
+    ├── outputs.tf    
+    ├── backend.tf    
     └── terraform.tfvars
 ```
 
@@ -25,35 +27,33 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
 ---
 
 ## Backlog & Future Enhancements
-## APP:
-- Branded/custom domain	Use go.mydomain.com instead of default API URL (using Route53 doamin and TLS with AWS ACM)	High
-- CORS / front-end enablement | Support a single-page UI	Low
-- Securing lambda code within the private vpc network with flow log enabled
-- URL expiration (TTL)	Automatically clean up stale short URLs	Medium
-- Click counter analytics	Track URL usage & popular links	Medium ## I need to analyse this
-- Custom shortcodes	Make vanity links (e.g., go/my-offer)	High
+### APP:
+- Branded/custom domain	Use go.mydomain.com instead of default API URL (using Route53 doamin and TLS with AWS ACM) | Medium Priority
+- CORS / front-end enablement | Support a single-page UI | Low Priority
+- Securing lambda code within the private vpc network with flow log enabled | High Priority
+- URL expiration (TTL)	Automatically clean up stale short URLs	| Medium Priority
 
 ---
 
-## Security & Governance
-- Rate limiting / WAF	Protect against malicious or excessive traffic	High
-- IAM-based authentication	Add Cognito/STS instead of static bearer token	High
-- Auth Token – Keep AUTH_TOKEN secret and rotate regularly
-- IAM Scoped Roles – The Lambda only needs read/write to the specific DynamoDB table
+### Security & Governance
+- Rate limiting / WAF |	Protect against malicious or excessive traffic	| High Priority
+- IAM-based authentication	Add Cognito/STS instead of static bearer token	| High Priority
+- Auth Token – Keep AUTH_TOKEN secret and rotate regularly | High Priority
+- IAM Scoped Roles – The Lambda only needs read/write to the specific DynamoDB table | Medium Priority
 
 ---
 
-## Observability
-- Monitoring & Alerts	CloudWatch alarms on 5xx, URL mis-pattern, etc.	Medium
-- GitHub Actions → Lambda CI	Auto-deploy Node.js function on updates	Medium
-- GitHub Actions → code push to run terraform plan and PR to approve and start the terrafrom apply. Basically to isolate both with reviews
+### Observability
+- Monitoring & Alerts	CloudWatch alarms on 5xx, URL mis-pattern, etc. | Medium Priority
+- GitHub Actions → Lambda CI	Auto-deploy Node.js function on updates	| Medium Priority
+- GitHub Actions → code push to run terraform plan and PR to approve and start the terrafrom apply. Basically to isolate both with reviews | High Priority
 
 ---
 
-## Malicious Traffic Mitigation 
-    - Add AWS WAF for IP throttling
-    - Validate/whitelist URL payloads and block SQL/XSS patterns
-    - Rate-limit short code usage via API Gateway usage plans
+### Malicious Traffic Mitigation | Next Steps on securing 
+- Add AWS WAF for IP throttling
+- Validate/whitelist URL payloads and block SQL/XSS patterns
+- Rate-limit short code usage via API Gateway usage plans
 
 ---
 
@@ -68,8 +68,7 @@ terraform plan
 terraform apply -auto-approve 
 ```
 
-## How to use the App
-## Test endpoints via curl or Postman: 
+### How to use the App | Test endpoints via curl or Postman: 
     
 ### To make short url (POST)
     
@@ -79,12 +78,10 @@ curl -X POST https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten \
     -H "authorization: $AUTH_TOKEN" \ 
     -d '{"URL":"https://www.babbel.com"}' 
 ```
-    
----
 
 ### To get the original URL (GET)
 
 ```bash 
-curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url <shortCode_generated>        
+curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url/<shortCode_generated>        
 ```
 
