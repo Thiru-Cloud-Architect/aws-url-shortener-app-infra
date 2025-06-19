@@ -26,7 +26,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: terraform
+        working-directory: terraform ## Added this as workflow failed with no configs
 
     steps:
       - name: Checkout
@@ -55,5 +55,5 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        if: github.event_name == 'push' && github.base_ref == 'main'
         run: terraform apply --auto-approve 
