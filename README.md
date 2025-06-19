@@ -36,6 +36,7 @@ Security & Governance
 Observability
     - Monitoring & Alerts	CloudWatch alarms on 5xx, URL mis-pattern, etc.	Medium
     - GitHub Actions → Lambda CI	Auto-deploy Node.js function on updates	Medium
+    - GitHub Actions → code push to run terraform plan and PR to approve and start the terrafrom apply. Basically to isolate both with reviews
 
 
 ** Malicious Traffic Mitigation **
