@@ -39,7 +39,7 @@ Observability
     - GitHub Actions → code push to run terraform plan and PR to approve and start the terrafrom apply. Basically to isolate both with reviews
 
 
-** Malicious Traffic Mitigation **
+## Malicious Traffic Mitigation 
     - Add AWS WAF for IP throttling
     - Validate/whitelist URL payloads and block SQL/XSS patterns
     - Rate-limit short code usage via API Gateway usage plans
@@ -52,13 +52,12 @@ How to use the App
     Test endpoints via curl or Postman: 
     
     1. To make short url
-    ```
-    curl -X POST -H "Content-Type:application/json" \ 
+    
+    ```        curl -X POST -H "Content-Type:application/json" \ 
     -H "authorization: $AUTH_TOKEN" \ 
     -d '{"URL":"https://example.com"}' \ 
-    https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten ```
+    https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten        ```
 
     2. To get the original URL
-    ```
-    curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url/<shortCode_generated> ```
+    ```        curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url/<shortCode_generated>        ```
 
