@@ -56,17 +56,32 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
 
 ## How to Build the App
 - Step:1 Build/deploy the Lambda ZIP (index.js + package.json + node_modules) to S3.
-- Step 2 Apply Terraform: bash cd terraform/ terraform init terraform plan and terraform apply -auto-approve 
+- Step 2 Apply Terraform: 
+
+```bash 
+cd terraform/ 
+terraform init 
+terraform plan 
+terraform apply -auto-approve 
+```
 
 ## How to use the App
 ## Test endpoints via curl or Postman: 
     
-- 1. To make short url
+### To make short url (POST)
     
 ```bash        
-curl -X POST -H "Content-Type:application/json" \ -H "authorization: $AUTH_TOKEN" \ -d '{"URL":"https://example.com"}' \ https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten        ```
+curl -X POST https://<api-id>.execute-api.ap-south-1.amazonaws.com/shorten \
+    -H "Content-Type:application/json" \ 
+    -H "authorization: $AUTH_TOKEN" \ 
+    -d '{"URL":"https://www.babbel.com"}' 
+```
+    
+---
 
-- 2. To get the original URL
+### To get the original URL (GET)
 
-```bash curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url <shortCode_generated>        ```
+```bash 
+curl -i https://<api-id>.execute-api.ap-south-1.amazonaws.com/get_original_url <shortCode_generated>        
+```
 
