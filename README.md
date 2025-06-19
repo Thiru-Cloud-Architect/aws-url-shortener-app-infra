@@ -4,6 +4,7 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
 --- 
 
 ## Project Structure
+```bash
 .
 ├── lambda/
 │   ├── index.js
@@ -12,6 +13,8 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
     ├── main.tf
     ├── variables.tf
     └── terraform.tfvars
+```
+
 ---
 
 ## Features
