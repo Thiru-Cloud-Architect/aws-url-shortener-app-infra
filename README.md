@@ -30,7 +30,7 @@ A lightweight, serverless URL-shortener built using AWS Lambda, API Gateway, and
 ### APP:
 - Branded/custom domain	Use go.mydomain.com instead of default API URL (using Route53 doamin and TLS with AWS ACM) | Medium Priority
 - CORS / front-end enablement | Support a single-page UI | Low Priority
-- Securing lambda code within the private vpc network with flow log enabled | High Priority
+- Securing lambda code within the private vpc network with flow log enabled | High Priority << This is something of an unwanted engineering and it wont help the stuff >>
 - URL expiration (TTL)	Automatically clean up stale short URLs	| Medium Priority
 
 ---
